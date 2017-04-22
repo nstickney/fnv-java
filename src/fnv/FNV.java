@@ -61,7 +61,7 @@ public class FNV {
      * Calculates the FNV-1 hash, then XOR folds to achieve the desired length if the length
      * parameter is not one of {32, 64, 128, 256, 512, 1024}. Hash lengths longer than 1024
      * bits are not supported. Note that hash lengths which are not a multiple of 8 will
-     * result in a byte array with some number (length mod 8) of leading zeros.
+     * result in a byte array with some number (8 -(length mod 8)) of leading zeros.
      *
      * @param inp the byte array to be hashed
      * @param length the desired length (in bits) of the hash
@@ -147,7 +147,7 @@ public class FNV {
      * Calculates the FNV-1a hash, then XOR folds to achieve the desired length if the length
      * parameter is not one of {32, 64, 128, 256, 512, 1024}. Hash lengths longer than 1024
      * bits are not supported. Note that hash lengths which are not a multiple of 8 will
-     * result in a byte array with some number (length mod 8) of leading zeros.
+     * result in a byte array with some number (8 - (length mod 8)) of leading zeros.
      *
      * @param inp the byte array to be hashed
      * @param length the desired length (in bits) of the hash
@@ -281,8 +281,6 @@ public class FNV {
      */
     static BigInteger xorFold(BigInteger inp, int k) {
         BigInteger andme = new BigInteger("2").pow(k).add(new BigInteger("-1"));
-        BigInteger temp = inp;
-        BigInteger hash = (temp.xor(temp.shiftRight(k))).and(andme);
-        return hash;
+        return (inp.xor(inp.shiftRight(k))).and(andme);
     }
 }
