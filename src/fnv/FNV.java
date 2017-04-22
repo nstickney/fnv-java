@@ -66,13 +66,13 @@ public class FNV {
      * @param inp the byte array to be hashed
      * @param length the desired length (in bits) of the hash
      * @return the hash result
-     * @throws UnsupportedOperationException length is less than 1 or more than 1024
+     * @throws UnsupportedOperationException length is less than 16 or more than 1024
      */
     public static byte[] fnv1(byte[] inp, int length) throws UnsupportedOperationException {
 
-        if (length < 1 || length > 1024) { // Check the length is supported
+        if (length < 16 || length > 1024) { // Check the length is supported
             throw new UnsupportedOperationException(
-                    "length must be between 1 and 1024, inclusive");
+                    "length must be between 16 and 1024, inclusive; received " + length);
         }
 
         BigInteger hash;
@@ -152,13 +152,13 @@ public class FNV {
      * @param inp the byte array to be hashed
      * @param length the desired length (in bits) of the hash
      * @return the hash result
-     * @throws UnsupportedOperationException length is less than 1 or more than 1024
+     * @throws UnsupportedOperationException length is less than 16 or more than 1024
      */
     public static byte[] fnv1a(byte[] inp, int length) throws UnsupportedOperationException {
 
-        if (length < 1 || length > 1024) { // Check the length is supported
+        if (length < 16 || length > 1024) { // Check the length is supported
             throw new UnsupportedOperationException(
-                    "length must be between 1 and 1024, inclusive");
+                    "length must be between 16 and 1024, inclusive; received " + length);
         }
 
         BigInteger hash;
