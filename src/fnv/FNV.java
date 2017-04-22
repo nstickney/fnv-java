@@ -279,7 +279,7 @@ public class FNV {
      * @param k the required length (in bits) of the returned value
      * @return the result of the xor fold
      */
-    static BigInteger xorFold(BigInteger inp, int k) {
+    private static BigInteger xorFold(BigInteger inp, int k) {
         BigInteger andme = new BigInteger("2").pow(k).add(new BigInteger("-1"));
         return (inp.xor(inp.shiftRight(k))).and(andme);
     }
